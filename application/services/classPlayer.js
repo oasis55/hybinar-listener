@@ -384,23 +384,6 @@ module.factory('classPlayer', ['$sce', '$timeout', '$window', '$document', '$htt
             }
             return '0:00';
         },
-        beforeStart: function () {
-            if (this.scope) {
-                var range = this.scope.conference.get('date') - Date.now(),
-                    days, hours, minutes, str;
-                if (range <= 0) return false;
-                days = Math.floor(range / (1000 * 60 * 60 * 24));
-                hours = Math.floor(range / (1000 * 60 * 60)) - days * 24;
-                minutes = Math.floor(range / (1000 * 60)) - days * 24 * 60 - hours * 60;
-                if (days > 0) {
-                    str = days + ' ' + this.declOfNum(days, ['день', 'дня', 'дней']);
-                } else {
-                    str = hours + ' ' + this.declOfNum(hours, ['час', 'часа', 'часов']) + ' ' +
-                    minutes + ' ' + this.declOfNum(minutes, ['минуту', 'минуты', 'минут']);
-                }
-                return str;
-            }
-        },
         declOfNum: function (number, titles) {
             var cases = [2, 0, 1, 1, 1, 2];
             return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
