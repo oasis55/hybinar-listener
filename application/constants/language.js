@@ -1,0 +1,1 @@
+module.constant('language', window.navigator.language.slice(0,2));
